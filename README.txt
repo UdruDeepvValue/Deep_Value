@@ -46,10 +46,19 @@ to your real .env file.
 Reference Links
 -----------------------------------
 
-- TODO
+- https://github.com/celery/kombu/issues/1668
+- https://github.com/nickjj/docker-flask-example
+- https://flask.palletsprojects.com/en/3.0.x/patterns/celery/
+
 
 -----------------------------------
 Video Timestamps
 -----------------------------------
 
-- TODO
+- 0:49 -- Glancing at a few changes
+- 1:14 -- Updating Postgres and Redis
+- 1:30 -- Making Celery compatible with Python 3.12
+- 4:48 -- Sometimes it's good to revisit the docs
+- 5:58 -- Updating Flask to 3.0 and the other Python dependencies
+- 6:39 -- Fixing email validation errors you might have encountered
+- 9:06 -- Have a happy new year!
