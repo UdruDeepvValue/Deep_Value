@@ -1,0 +1,22 @@
+{% extends 'layouts/app.html' %}
+{% import 'billing/macros/billing.html' as billing %}
+
+{% block title %}Billing details and history{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-12">
+        {{ billing.subscription_details(coupon) }}
+        {{ billing.upcoming_invoice(upcoming) }}
+        {{ billing.invoices(paginated_invoices) }}
+
+        <hr class="mt-5" />
+        <a href="{{ url_for('user.profile') }}" class="btn btn-primary">
+          Go back to your account
+        </a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,3 +1,72 @@
 // Define your own custom variables here that you can use in any SCSS file.
 $sticky-footer-height: 60px;
 $sticky-footer-line-height: $sticky-footer-height;
+
+.Text-motto1{
+    white-space: pre-wrap;
+    overflow: visible;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 1;
+    align-self: center;
+    min-width: 100%;
+    order: 1;
+    z-index: 2;
+    text-shadow: 1px 0 #111, -1px 0 #111, 0 1px #111, 0 -1px #111, 1px 1px #111, -1px -1px #111, 1px -1px #111, -1px 1px #111;
+}
+
+.Text-motto2{
+    overflow: visible;
+    font-size: 5rem;
+    font-weight: 700;
+    color: #fe701a;
+    text-align: center;
+    opacity: 1;
+    align-self: center;
+    min-width: 0px;
+    max-width: 100%;
+    order: 2;
+    min-height: 0px;
+    z-index: 3;
+    text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+
+.profile-info img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.card-header {
+    background-color: #fe701a !important;
+}
+
+.card {
+    background-color: #202020 !important;
+}
+
+.card-body {
+    background-color: #202020 !important;
+}
+
+.btn-default {
+  color: #fff !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 1.25rem !important;
+  line-height: 1.5 !important;
+  border-radius: 0.3rem !important;
+  background-color: #fe701a !important;
+  border-color: #fff !important;
+}
+
+.form {
+    text-align: center !important;
+}
+
+#Listed {
+    list-style-type: none !important;
+}

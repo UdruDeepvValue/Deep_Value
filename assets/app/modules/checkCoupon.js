@@ -46,7 +46,7 @@ export default class CheckCoupon {
       return false;
     });
 
-    $('body').on('submit', this.coinBundlesSelector, function () {
+    $('body').on('submit', this.creditBundlesSelector, function () {
       _this.check();
 
       return false;

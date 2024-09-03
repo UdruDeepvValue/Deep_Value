@@ -1,0 +1,67 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+{% import 'macros/items.html' as items %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}NeurOne by Deep Value{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 text-primary text-center mb-5">
+        <h2>Fill the below form to get the unbiased EV of a company</h2>
+        <div class="Logo-container" style="padding-top: 20px;">
+          <a class="Clickable-Logo" href="/neurone">
+			  <img src="{{ static_url_for('static', filename='images/NeurOne.png') }}" height="120" class="d-inline-block align-top" alt=""/></a>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 text-center mb-0">
+        <img src="{{ static_url_for('static', filename='images/tools.png') }}" alt="Tools" class="icon">
+      </div>
+      <div class="col-md-12 text-center mb-3">
+        <h3 class="heading" style="color: #fe701a;">Important Information for Using This Tool</h3>
+      </div>
+      <div class="col-md-12 text-center mb-5">
+        <p class="subheading">To ensure accurate results, please complete all fields below. Each field is essential for the algorithm to function properly. If you’re unsure about any information, please enter your best estimate.</p>
+      </div>
+      <div class="col-md-8 col-offset-2 text-center">
+        {% if cred > 0 %}
+
+          {% call f.form_tag('search.neurone') %}
+            {% call f.form_group(form.pjn, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Rev0, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Ebitda, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Fcff, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Rev1, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Hcagr, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Fcagr, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Arr, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Country, autofocus='autofocus') %}{% endcall %}
+            {% call f.form_group(form.Industry, autofocus='autofocus') %}{% endcall %}
+            <div class="form-group">
+              <span class="text-primary"><b>{{ form.Listed.label }}</b></span>
+              {{ form.Listed() }}
+            </div>
+            <div class="form-group">
+              <span class="text-primary"><b>GDPR acknowledgement:</b> I agree that this site stores the information I submit so that they can respond to my requests.</span><br>
+              {{ form.gdpr() }}
+            </div>
+            <div class="row mb-3 justify-content-md-center">
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-primary btn-block">
+                  Deep Value it!
+                </button>
+              </div>
+            </div>
+          {% endcall %}
+
+        {% else %}
+            <h1>You need to buy credits!</h1>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

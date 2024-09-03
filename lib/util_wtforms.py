@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms_alchemy import model_form_factory
 
-from snakeeyes.extensions import db
+from neurone.extensions import db
 
 BaseModelForm = model_form_factory(FlaskForm)
 

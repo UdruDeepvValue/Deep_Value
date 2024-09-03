@@ -1,0 +1,106 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %}Account settings{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-5">
+        <div class="profile-info">
+          <img src="{{ static_url_for('static', filename='images/profile.jpg') }}" alt="Profile Picture"> <h2 style="color:#fff; padding-top:1.5rem;">{{ name }} {{surname}}</h2> <p style="color:#fff;">Email: {{email}}</p> <p style="color:#fff;">Member Since:
+            {{ join }}</p>
+            <a href="{{ url_for('user.update_credentials') }}">
+              Update email and password
+            </a>
+        </div>
+
+      </div>
+      <div class="col-md-5 col-md-push-1 col-md-offset-1">
+          {% if current_user.subscription %}
+            <h2>{{ current_user.subscription.plan | title }}
+              subscription</h2>
+            <h4 class="text-muted margin-bottom">
+              {{ current_user.credit_card.brand }}
+              ****{{ current_user.credit_card.last4 }}
+              ({{ current_user.credit_card.exp_date.strftime('%m/%Y') }})
+            </h4>
+
+            <div class="list-group">
+              <a class="list-group-item"
+                 href="{{ url_for('billing.update_payment_method') }}">
+                Update payment info
+              </a>
+              <a class="list-group-item"
+                 href="{{ url_for('billing.billing_details') }}">
+                Billing details
+              </a>
+              <a class="list-group-item"
+                 href="{{ url_for('billing.update') }}">
+                Change plan
+              </a>
+              <a class="list-group-item"
+                 href="{{ url_for('billing.cancel') }}">
+                <span class="text-muted">Cancel subscription</span>
+              </a>
+            </div>
+          {% else %}
+            <h2>Unlock Your Full Potential</h2>
+            <h4 class="text-muted">
+              Subscribe today!
+            </h4>
+
+            <p>
+              Now that you've created an account, wouldn't it be unbelievably
+              amazing to unlock the power of Deep Value by becoming a subscriber today?
+            </p>
+            <a href="{{ url_for('billing.pricing') }}"
+               class="btn btn-primary">Learn more</a>
+
+            <hr/>
+            {% if current_user.invoices %}
+              <h3>Previous subscription info</h3>
+              <div class="list-group">
+                <a class="list-group-item"
+                  href="{{ url_for('billing.billing_details') }}">
+                  Billing details
+                </a>
+              </div>
+            {% endif %}
+          {% endif %}
+      </div>
+    </div>
+    <div class="row pb-5 mt-5 mb-5 text-center">
+        <div class="col-md-12">
+            <h3>Remaining Credits:</h3>
+            <h1 id="credits">{{ cred }}</h1>
+        </div>
+        <div class="col-md-12">
+            <h2 class="text-primary mb-3">Neurone History</h2>
+            <table class="table table-dark table-striped table-bordered border-white">
+              <thead>
+                <tr>
+                    <th class="js-col-header">Date</th>
+                    <th class="js-col-header">Nickname</th>
+                    <th class="js-col-header">ID</th>
+                    <th class="js-col-header">Link for the report </th>
+                </tr>
+              </thead>
+                <tbody>
+                {% for i in dbu %}
+                    <tr>
+                        <td>{{ i.submit_date }}</td>
+                        <td>{{ i.pj_name }}</td>
+                        <td>{{ i.key }}</td>
+                        <td><a href="{{ url_for('search.results', key=i.key) }}">Open report</a> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

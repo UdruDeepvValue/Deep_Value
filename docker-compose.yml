@@ -32,13 +32,13 @@ services:
     environment:
       POSTGRES_USER: "${POSTGRES_USER}"
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
-      # POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_DB: "${POSTGRES_DB}"
     image: "postgres:16.1-bookworm"
     ports:
       - "${DOCKER_POSTGRES_PORT_FORWARD:-127.0.0.1:5432}:5432"
     profiles: ["postgres"]
     restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
-    stop_grace_period: "3s"
+    stop_grace_period: "20s"
     volumes:
       - "postgres:/var/lib/postgresql/data"
 
@@ -51,36 +51,36 @@ services:
     image: "redis:7.2.3-bookworm"
     profiles: ["redis"]
     restart: "${DOCKER_RESTART_POLICY:-unless-stopped}"
-    stop_grace_period: "3s"
+    stop_grace_period: "20s"
     volumes:
       - "redis:/data"
 
   web:
     <<: *default-app
-    deploy:
-      resources:
-        limits:
-          cpus: "${DOCKER_WEB_CPUS:-0}"
-          memory: "${DOCKER_WEB_MEMORY:-0}"
-    healthcheck:
-      test: "${DOCKER_WEB_HEALTHCHECK_TEST:-curl localhost:8000/up}"
-      interval: "60s"
-      timeout: "3s"
-      start_period: "5s"
-      retries: 3
+    # deploy:
+    #  resources:
+    #    limits:
+    #      cpus: "${DOCKER_WEB_CPUS:-0}"
+    #      memory: "${DOCKER_WEB_MEMORY:-0}"
+    #healthcheck:
+    #  test: "${DOCKER_WEB_HEALTHCHECK_TEST:-curl localhost:8000/up}"
+    #  interval: "60s"
+    #  timeout: "900s"
+    #  start_period: "5s"
+    #  retries: 3
     ports:
       - "${DOCKER_WEB_PORT_FORWARD:-127.0.0.1:8000}:${PORT:-8000}"
     profiles: ["web"]
 
   worker:
     <<: *default-app
-    command: celery -A "snakeeyes.app.celery_app" worker -l "${CELERY_LOG_LEVEL:-INFO}"
+    command: celery -A "neurone.app.celery_app" worker -l "${CELERY_LOG_LEVEL:-INFO}"
     entrypoint: []
     deploy:
-      resources:
-        limits:
-          cpus: "${DOCKER_WORKER_CPUS:-0}"
-          memory: "${DOCKER_WORKER_MEMORY:-0}"
+      #resources:
+      #  limits:
+      #    cpus: "${DOCKER_WORKER_CPUS:-0}"
+      #    memory: "${DOCKER_WORKER_MEMORY:-0}"
     profiles: ["worker"]
 
   webpack:

@@ -1,0 +1,22 @@
+{% extends 'layouts/app.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block title %}Sign up for a new account{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5 d-flex justify-content-center">
+      <div class="col-md-12 text-center">
+        <h3 style="text-color:#ffffff">Welcome to</h3>
+        <div class="Logo-container">
+            <a class="Clickable-Logo" href="/">
+                  <img src="{{ static_url_for('static', filename='images/Logo.png') }}" height="120" class="d-inline-block align-top" alt=""/></a>
+        </div>
+      </div>
+      <div class="col col-md-6 col-offset-3">
+        {{wtf.quick_form(form)}}
+      </div>
+    </div>
+  </div>
+{% endblock %}

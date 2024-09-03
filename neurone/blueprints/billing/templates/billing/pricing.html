@@ -1,0 +1,86 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+{% import 'billing/macros/billing.html' as billing with context %}
+
+{% block title %}Ready for the future?{% endblock %}
+{% block meta_description %}Sign up today to subscribe so you can begin to
+use NeurOne.{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-12 mb-4">
+        {% if current_user.subscription %}
+          <h2 class="h1 text-center">You're about to change plans</h2>
+          <div class="alert alert-warning text-center mb-3">
+            Your plan will change <strong>immediately</strong> after clicking
+            'Change plan'.
+          </div>
+        {% else %}
+          <h2 class="h1 text-center">Ready for the future of M&A valuation?</h2>
+          <h3 class="font-weight-light text-center text-muted mt-0">
+            You're a few clicks away from it
+          </h3>
+        {% endif %}
+        {% call f.form_tag('billing.update', fid='subscription_form') %}
+          {% if current_user.subscription %}
+            <div class="row">
+              <div class="col-md-4 offset-md-4">
+                {{ form.coupon_code.label }}
+                {{ f.field(form.coupon_code, css_class='text-uppercase') }}
+                <div id="coupon_code_status" class="small alert alert-success mt-1">
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          <div class="row mt-5">
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">
+                  <h3 class="text-center mt-2">Single</h3>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item"><strong>Single or bundle valuations</strong></li>
+                    <li class="list-group-item">No Monthly subscriptions</li> <!--
+                    <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+                    <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+                    <li class="list-group-item"><del>Consequuntur voluptatum</del></li>
+                    <li class="list-group-item"><del>Consequuntur voluptatum</del></li> -->
+                  </ul>
+                  <a href="{{ url_for('billing.purchase_credits') }}" class="btn btn-primary btn-lg btn-block mt-4">
+                        Continue</a>
+                  <p class="text-white text-center mt-4">
+                    €<span class="js-payment-amount">from €500</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {% call billing.plan(plans['1']) %}
+              <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item"><strong>10 valuations per month</strong></li>
+                <li class="list-group-item">Monthly billing supscrition</li> <!--
+                <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+              <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+              <li class="list-group-item"><del>Consequuntur voluptatum</del></li>
+              <li class="list-group-item"><del>Consequuntur voluptatum</del></li> -->
+              </ul>
+            {% endcall %}
+            {% call billing.plan(plans['2']) %}
+              <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item"><strong>20 valuations per month</strong></li>
+                <li class="list-group-item">Monthly billing subscription</li> <!--
+                <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+              <li class="list-group-item"><del>Dicta optio cumque dolore</del></li>
+              <li class="list-group-item"><del>Consequuntur voluptatum</del></li>
+              <li class="list-group-item"><del>Consequuntur voluptatum</del></li> -->
+              </ul>
+            {% endcall %}
+          </div>
+        {% endcall %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

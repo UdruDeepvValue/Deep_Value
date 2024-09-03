@@ -9,7 +9,8 @@ flake8==6.1.0
 isort==5.13.2
 black==23.12.1
 
-psycopg==3.1.16
+# psycopg==3.1.16
+psycopg2==2.9.9
 alembic==1.13.1
 SQLAlchemy==2.0.24
 Flask-SQLAlchemy==3.1.1
@@ -21,6 +22,7 @@ celery==5.3.6
 Flask-WTF==1.2.1
 WTForms-Components==0.10.5
 WTForms-Alchemy==0.18.0
+WTForms-SQLAlchemy==0.4.1
 WTForms==3.1.1
 validators==0.20.0
 
@@ -35,3 +37,18 @@ Flask-Babel==4.0.0
 Flask-Static-Digest==0.4.0
 Flask-Secrets==0.1.0
 Flask-DB==0.4.0
+
+Babel==2.14.0
+Flask-Bootstrap
+keras==2.15.0
+numpy==1.26.4
+pandas==2.2.2
+tensorboard==2.15.2
+tensorboard-data-server==0.7.2
+tensorflow==2.15.0
+tensorflow-estimator==2.15.0
+#tensorflow-intel==2.15.0
+tensorflow-io-gcs-filesystem==0.31.0
+
+openai==1.35.15
+markdown==3.6

@@ -1,0 +1,40 @@
+{% extends 'layouts/base.html' %}
+
+{% block header %}
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <div class="container" style="padding-left: 0px; padding-right: 0px">
+      <a class="navbar-brand mr-4" href="{{ url_for('page.home') }}">
+        <img src="{{ static_url_for('static', filename='images/Logo.png') }}"
+             class="img-fluid"
+             style="height:80px;" title="Deep Values" alt="Deep Value"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+              data-target="#navbarCollapse"
+              aria-controls="navbarCollapse"
+              aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav mr-auto">
+            <a class="nav-item nav-link text-white" href="{{ url_for('page.home') }}">Home</a>
+            <a class="nav-item nav-link text-white" href="{{ url_for('billing.pricing') }}">Pricing</a>
+        </div>
+        <div class="navbar-nav">
+          {% if current_user.roles == 'admin' %}
+              {% include 'admin/_menu.html' %}
+          {% endif %}
+        </div>
+        <div class="navbar-nav">
+          {% if current_user.is_authenticated %}
+            <a class="nav-item nav-link text-white" href="{{ url_for('user.profile') }}">Profile</a>
+            <a class="nav-item nav-link text-white" href="{{ url_for('search.neurone') }}">Neurone</a>
+            <a class="nav-item nav-link text-white" href="{{ url_for('user.logout') }}">Logout</a>
+          {% else %}
+            <a class="nav-item nav-link text-white" href="{{ url_for('user.login') }}">Login</a>
+            <a class="nav-item nav-link text-white" href="{{ url_for('user.register') }}">Register</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+{% endblock %}

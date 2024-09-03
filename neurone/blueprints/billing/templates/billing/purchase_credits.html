@@ -1,0 +1,23 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+{% import 'billing/macros/billing.html' as billing %}
+
+{% block title %}Purchase valuations{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-4 offset-md-4 card bg-dark">
+        {% call f.form_tag('billing.purchase_credits', fid='payment_form') %}
+          <h2 class="mb-4">Purchase credits</h2>
+
+          {% call f.form_group(form.credit_bundles) %}
+          {% endcall %}
+
+          {{ billing.payment_form(form, 'Process payment', True) }}
+        {% endcall %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

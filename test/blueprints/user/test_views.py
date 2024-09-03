@@ -2,7 +2,7 @@ from flask import url_for
 
 from lib.tests import ViewTestMixin
 from lib.tests import assert_status_with_message
-from snakeeyes.blueprints.user.models import User
+from neurone.blueprints.user.models import User
 
 
 class TestLogin(ViewTestMixin):
@@ -18,7 +18,7 @@ class TestLogin(ViewTestMixin):
 
     def test_login_activity(self, users):
         """Login successfully and update the activity stats."""
-        user = User.find_by_identity("admin@local.host")
+        user = User.find_by_identity("marco.colonna@zoho.eut")
         old_sign_in_count = user.sign_in_count
 
         response = self.login()
@@ -95,7 +95,7 @@ class TestPasswordReset(ViewTestMixin):
 
     def test_begin_password_reset(self):
         """Begin password reset successfully."""
-        user = {"identity": "admin@local.host"}
+        user = {"identity": "marco.colonna@zoho.eu"}
         response = self.client.post(
             url_for("user.begin_password_reset"),
             data=user,
@@ -105,7 +105,7 @@ class TestPasswordReset(ViewTestMixin):
         assert_status_with_message(
             200,
             response,
-            "An email has been sent to {0}.".format("admin@local.host"),
+            "An email has been sent to {0}.".format("marco.colonna@zoho.eu"),
         )
 
     def test_password_reset(self, users, token):
@@ -119,7 +119,7 @@ class TestPasswordReset(ViewTestMixin):
             200, response, "Your password has been reset."
         )
 
-        admin = User.find_by_identity("admin@local.host")
+        admin = User.find_by_identity("marco.colonna@zoho.eu")
         assert admin.password != "newpassword"
 
     def test_password_reset_empty_token(self):
@@ -149,6 +149,8 @@ class TestPasswordReset(ViewTestMixin):
         )
 
 
+# Aggiungere TEests per Confirm Email address
+
 class TestSignup(ViewTestMixin):
     def test_signup_page(self):
         """Signup renders successfully."""
@@ -174,7 +176,7 @@ class TestSignup(ViewTestMixin):
 
     def test_begin_signup_fail(self):
         """Signup failure due to using an account that exists."""
-        user = {"email": "admin@local.host", "password": "password"}
+        user = {"email": "marco.colonna@zoho.eu", "password": "12345"}
         response = self.client.post(
             url_for("user.signup"), data=user, follow_redirects=True
         )
@@ -200,42 +202,21 @@ class TestSignup(ViewTestMixin):
         new_user = User.find_by_identity("new@local.host")
         assert new_user.password != "password"
 
-    def test_welcome(self, users):
-        """Create username successfully."""
-        self.login()
-
-        user = {"username": "hello"}
-        response = self.client.post(
-            url_for("user.welcome"), data=user, follow_redirects=True
-        )
-
-        assert_status_with_message(
-            200, response, "Sign up is complete, enjoy our services."
-        )
-
-    def test_welcome_with_existing_username(self, users):
-        """Create username failure due to username already existing."""
-        self.login()
-
-        u = User.find_by_identity("admin@local.host")
-        u.username = "hello"
-        u.save()
-
-        user = {"username": "hello"}
-        response = self.client.post(
-            url_for("user.welcome"), data=user, follow_redirects=True
-        )
-
-        assert_status_with_message(
-            200, response, "You already picked a username."
-        )
-
 
 class TestSettings(ViewTestMixin):
     def test_settings_page(self):
         """Settings renders successfully."""
         self.login()
         response = self.client.get(url_for("user.settings"))
+
+        assert response.status_code == 200
+
+
+class TestProfile(ViewTestMixin):
+    def test_profile_page(self):
+        """Settings renders successfully."""
+        self.login()
+        response = self.client.get(url_for("user.profile"))
 
         assert response.status_code == 200
 
@@ -252,7 +233,7 @@ class TestUpdateCredentials(ViewTestMixin):
         """Update credentials failure due to invalid current password."""
         self.login()
 
-        user = {"current_password": "nopenope", "email": "admin@local.host"}
+        user = {"current_password": "nopenope", "email": "marco.colonna@zoho.eu"}
         response = self.client.post(
             url_for("user.update_credentials"),
             data=user,
@@ -278,7 +259,7 @@ class TestUpdateCredentials(ViewTestMixin):
         """Update credentials but only the e-mail address."""
         self.login()
 
-        user = {"current_password": "password", "email": "admin2@local.host"}
+        user = {"current_password": "password", "email": "marco.colonna@zoho.eu"}
         response = self.client.post(
             url_for("user.update_credentials"),
             data=user,
@@ -289,7 +270,7 @@ class TestUpdateCredentials(ViewTestMixin):
             200, response, "Your sign in settings have been updated."
         )
 
-        old_user = User.find_by_identity("admin@local.host")
+        old_user = User.find_by_identity("marco.colonna@zoho.eu")
         assert old_user is None
 
         new_user = User.find_by_identity("admin2@local.host")
@@ -300,9 +281,9 @@ class TestUpdateCredentials(ViewTestMixin):
         self.login()
 
         user = {
-            "current_password": "password",
-            "email": "admin@local.host",
-            "password": "newpassword",
+            "current_password": "12345",
+            "email": "marco.colonna@zoho.eu",
+            "password": "password",
         }
 
         response = self.client.post(
@@ -322,9 +303,9 @@ class TestUpdateCredentials(ViewTestMixin):
         self.login()
 
         user = {
-            "current_password": "password",
+            "current_password": "12345",
             "email": "admin2@local.host",
-            "password": "newpassword",
+            "password": "password",
         }
 
         response = self.client.post(
@@ -348,7 +329,7 @@ class TestUpdateLocale(ViewTestMixin):
         """Locale works successfully."""
         self.login()
 
-        user = {"locale": "kl"}
+        user = {"locale": "it"}
         response = self.client.post(
             url_for("user.update_locale"), data=user, follow_redirects=True
         )
@@ -357,15 +338,15 @@ class TestUpdateLocale(ViewTestMixin):
             200, response, "Your locale settings have been updated."
         )
 
-    def test_klingon_locale(self, users):
+    def test_itslisn_locale(self, users):
         """Klingon locale works successfully."""
-        user = User.find_by_identity("admin@local.host")
-        user.locale = "kl"
+        user = User.find_by_identity("marco.colonna@zoho.eu")
+        user.locale = "it"
         user.save()
 
         self.login()
 
-        response = self.client.get(url_for("billing.purchase_coins"))
+        response = self.client.get(url_for("billing.purchase_credits"))
 
         # TODO: Figure out why this fails in tests but works in a browser.
         # Klingon for "Card".

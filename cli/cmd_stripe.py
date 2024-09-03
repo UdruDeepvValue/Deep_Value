@@ -2,7 +2,7 @@ import click
 from flask import current_app
 from flask.cli import with_appcontext
 
-from snakeeyes.blueprints.billing.gateways.stripecom import Plan as PaymentPlan
+from neurone.blueprints.billing.gateways.stripecom import Plan as PaymentPlan
 
 
 @click.group()

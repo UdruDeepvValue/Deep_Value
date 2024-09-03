@@ -13,7 +13,7 @@ class TestContact(object):
         """Contact form should redirect with a message."""
         form = {
             "email": "foo@bar.com",
-            "message": "Test message from Snake Eyes.",
+            "message": "Test message from Deep Value.",
         }
 
         response = client.post(

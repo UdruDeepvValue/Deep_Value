@@ -1,0 +1,211 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %}Deep Value, the future of M&A Valuation{% endblock %}
+
+{% block body %}
+  <div style="height: 100px"></div>
+  <div class="container align-content-center mb-3"
+        style="height:400px; width:100%; background-color: rgba(255, 255, 255, 0); background-repeat: no-repeat;
+        background-position: center center; background-size: cover;
+        background-image: url({{ static_url_for('static', filename='images/blob3.jpeg') }})">
+        <div class="col-md-12"> <h3 class="Text-motto1">You only have one chance to get the price right so...</h3></div>
+        <div class="col-md-12"> <h2 class="Text-motto2 text-primary" style="width:100%">Deep Value it!</h2></div>
+  </div>
+  <div class="container">
+    {% if not current_user.is_authenticated %}
+    <div class="row text-center pb-2 ml-5 mr-5">
+      <div class="col-md-6 d-flex justify-content-center" style="padding: 30px;">
+        <a href="/login" style="color:inherit;">
+          <button class="btn btn-primary pl-5 pr-5 pb-2 pt-2"
+                  style="box-shadow: 0px 7px 30px -10px rgba(#fe701a, 0.1)">Log in>
+          </button>
+        </a>
+      </div>
+      <div class="col-md-6 d-flex justify-content-center" style="padding: 30px;">
+        <a href="/register" style="color:inherit;">
+          <button class="btn btn-outline-primary pl-5 pr-5 pb-2 pt-2"
+                  style="box-shadow: 0px 7px 30px -10px rgba(#111111, 0.1)">Sign up>
+          </button>
+        </a>
+      </div>
+    </div>
+    {% endif %}
+    <div class="row text-center pt-3 pb-5">
+      <div class="col-md-12">
+        <p class="block-text"
+           style="font-size:1.4em; color:#fff;">
+          Whether you are a M&amp;A expert or a novice, you are acquiring or selling,
+          ensuring a deep understanding of the company’s true value is essential
+          to avoid costly mistakes and maximize long-term returns. A comprehensive
+          valuation process that considers financial metrics, industry trends,
+          competitive landscape, and future growth potential is crucial to make
+          informed decisions that align with your strategic objectives.</p>
+      </div>
+    </div>
+    <div class="row text-center pb-5 d-flex align-items-center">
+      <div class="col-md-6 flex-shrink-0">
+        <img src="{{ static_url_for('static', filename='images/Background1.jpg') }}"
+             class="bg" style="width: 100%;">
+      </div>
+      <div class="col-md-6 flex-grow-1 ms-3">
+        <ul>
+          <li style="font-size:1.4em">
+            Neur<span style="color:#fe701a" class="li_DV">One</span>
+            is the world’s first artificial intelligence algorithm that can provide accurate,
+            error-free, and unbiased business valuations.<br>
+          </li>
+          <li style="font-size:1.4em">
+            Neur<span style="color:#fe701a" class="li_DV">One</span>,
+            in addition to the data entered by the user, acquires data from a variety of sources,
+            including market, macroeconomic, and industry data, and identifies the factors that
+            influence the value of a company, thus generating the exact valuation at a given time.<br>
+          </li>
+          <li style="font-size:1.4em">
+            Neur<span style="color:#fe701a" class="li_DV">One</span>
+            is a revolutionary technology that has the potential to dominate the business
+            valuation market and is the best choice for anyone who needs an accurate and
+            reliable valuation of a company’s&nbsp;value.
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="row text-center mt-5">
+      <div class="col-lg-12">
+        <div class="title text-primary"><h1>Problems with current M&A valuation</h1></div>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/error-icon.png') }}" alt="Error Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1 center-block">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">ERRORS WORTH MILLIONS</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">No matter if you are a buyer or a seller, even a small error
+                in valuation can have a significant impact on your financial outcome</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/subjectivity-icon.png') }}" alt="Subjectivity Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">SUBJECTIVITY AND BIAS</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Human judgment can introduce biases and inconsistencies,
+                leading to inaccurate valuations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/data-icon.png') }}" alt="Data Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">LIMITED DATA COVERAGE</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Traditional valuation methods rely on limited data sets,
+                such as financial statements, which may overlook important factors such as market
+                dynamics, growth potential, and sector trends.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/transparency-icon.png') }}" alt="Transparency Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">LACK OF TRANSPARENCY</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Traditional valuation processes are often opaque, making
+                it difficult for stakeholders to understand the rationale behind valuations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/time-icon.png') }}" alt="Time Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">TIME CONSUMING AND COSTLY</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Manual valuation methods are often time-consuming and
+                resource-intensive, increasing the overall cost of the M&A process</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 bg-primary m-3">
+        <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/structure-icon.png') }}" alt="Structure Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">LACK OF M&A STRUCTURE</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Many organizations lack a structured approach to M&A,
+                leading to uncertainty in valuing businesses.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-7 offset-md-2 bg-primary m-3">
+      <div class="row d-flex align-items-center">
+          <div class="col-lg-3 m-1 flex-shrink-0 d-flex justify-content-center">
+            <img src="{{ static_url_for('static', filename='images/trust-icon.png') }}" alt="Trust Icon" class="icon">
+          </div>
+          <div class="col-lg-8 m-1 flex-grow-1">
+            <div class="row text-center">
+              <h5 class="heading p-0 w-100 text-center">LACK OF TRUST IN VALUATION</h5>
+            </div>
+            <div class="row">
+              <p class="subheading p-0">Valuation professionals may lack confidence in presenting
+                their results to senior stakeholders</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <h1 class="text-primary">The future of M&A Valuation</h1>
+        <p class="mt-10" style="font-size:1.2em">The future of M&A valuation lies not in replacing human expertise with
+          technology, but in harnessing its power to amplify it. AI will not replace M&A professionals,
+          but instead, it will empower them to make more informed, data-driven decisions,
+          leading to better outcomes for businesses and stakeholders alike.</p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-md-12 text-center">
+        <h3 class="text-primary" style="font-size:1.5em">One Shot, One Price: Get the Right Value in Your M&A Deal</h3>
+        <p class="mt-10" style="font-size:1.2em">In the dynamic world of mergers and acquisitions, where a single valuation
+          determines the deal’s fate, seeking an unbiased, scientific, and reliable evaluation is
+          paramount to ensuring long-term success.</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -6,6 +6,7 @@ from collections import OrderedDict
 class Currency(object):
     TYPES = OrderedDict(
         [
+            ("eur", "Euro"),
             ("usd", "United States Dollar"),
             ("aed", "United Arab Emirates Dirham"),
             ("afn", "Afghan Afghani"),
@@ -45,7 +46,6 @@ class Currency(object):
             ("eek", "Estonian Kroon"),
             ("egp", "Egyptian Pound"),
             ("etb", "Ethiopian Birr"),
-            ("eur", "Euro"),
             ("fjd", "Fijian Dollar"),
             ("fkp", "Falkland Islands Pound"),
             ("gbp", "British Pound"),

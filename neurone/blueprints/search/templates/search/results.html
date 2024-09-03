@@ -1,0 +1,189 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}Neurone Results{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-12">
+        <h2 class="Entries_Title">Data provided in the form:</h2>
+        <table
+            style="font-size:70%; line-height:0.7"
+            class="table table-dark table-striped table-bordered border-primary w-auto">
+          <tbody>
+            {% for i in range(12) %}
+              <tr>
+                <td>{{ info[i] }}</td>
+                {% if info1[i] == 1 %}
+                  <td>True</td>
+                {% elif info1[i] == 0 %}
+                  <td>False</td>
+                {% else %}
+                  <td>{{ info1[i] }}</td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Your results from Neurone</h1>
+      </div>
+      <div class="col-md-7">
+        <table class="table table-dark table-striped table-bordered border-primary w-auto">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th class="text-center">Enterprise Value</th>
+              <th>EBITDA Multiple</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td>
+                  <h5 class="text-primary">
+                    Fair Value
+                  </h5>
+                </td>
+                <td>
+                  <h5 class="text-primary text-right">
+                  {{ info2[5] }}K
+                  </h5>
+                </td>
+                <td>
+                  <h5 class="text-primary text-center">
+                  {{ info2[2] }}x
+                  </h5>
+                </td>
+              </tr>
+              <tr>
+                <td>Minimum EV</td>
+                <td class="text-right">{{ info2[3] }}K</td>
+                <td class="text-center">{{ info2[0] }}x</td>
+              </tr>
+              <tr>
+                <td>Maximum EV</td>
+                <td class="text-right">{{ info2[4] }}K</td>
+                <td class="text-center">{{ info2[1] }}x</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <h5 class="text-center text-muted">
+                    Global {{ industry }} Average Multiplier:
+                  </h5>
+                </td>
+                <td>
+                  <h5 class="text-center text-muted">
+                    {{ mmul }}x
+                  </h5>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col col-md-4">
+        <canvas class="text-white" style="height: 400px !important;" id="myChart"></canvas>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.umd.min.js"></script>
+    <script>
+    // setup
+    const data = {
+      labels: [''],
+      datasets: [{
+        label: '',
+        data: [{{ info3[0] | safe }}],
+        backgroundColor: ['rgba(0, 0, 0, 0)'],
+        borderColor: ['rgba(0, 0, 0, 0)'],
+        borderWidth: 1,
+        order: 2
+      },{
+        label: 'Lower Range',
+        data: [{{ info3[1] | safe }}],
+        backgroundColor: ['rgba(255, 255, 255, 0.6)'],
+        borderColor: ['rgba(255, 255, 255, 1)'],
+        borderWidth: 1,
+        order: 2
+      },{
+        label: 'Fair Value',
+        data: [0.2],
+        backgroundColor: ['rgba(255, 0, 0, 1)'],
+        borderColor: ['rgba(255, 0, 0, 1)'],
+        borderWidth: 1,
+        order: 2
+      },
+      {
+        label: 'Higher Range',
+        data: [{{ info3[2] | safe }}],
+        backgroundColor: ['rgba(254, 112, 26, 1)'],
+        borderColor: ['rgba(254, 112, 26, 1)'],
+        borderWidth: 1,
+        order: 2
+      },{
+        label: 'Market',
+        data: [{{ mmul | safe }}],
+        backgroundColor: ['rgba(255, 255, 0, 1)'],
+        borderColor: ['rgba(255, 0, 0, 1)'],
+        borderWidth: 1,
+        pointStyle: 'rectRot',
+        radius: 10,
+        type: 'line',
+        order: 1
+      }]
+    };
+
+    // config
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        plugins: {
+          tooltip: {
+            enabled: false,
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+         x: {
+          stacked: true
+         },
+         y: {
+            min: {{ info3[3] | safe }},
+            max: {{ info3[4] | safe }},
+            stacked: true
+          }
+        }
+      }
+    };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+      // Instantly assign Chart.js version
+    const chartVersion = document.getElementById('chartVersion');
+    chartVersion.innerText = Chart.version;
+    </script>
+      </div>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-offset-2">
+        <h1 class="text-primary"> Reasons for the valuation</h1>
+        {{ html | safe }}
+      </div>
+    </div>
+    <div class="row"><br></div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-offset-2">
+        <h1 class="text-primary"> Market Analysis</h1>
+        {{ html2 | safe }}
+      </div>
+    </div>
+  </div>
+{% endblock %}

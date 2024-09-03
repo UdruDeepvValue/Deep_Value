@@ -4,10 +4,10 @@ import pytz
 
 from lib.money import cents_to_dollars
 from lib.money import dollars_to_cents
-from snakeeyes.blueprints.billing.models.coupon import Coupon
-from snakeeyes.blueprints.billing.models.credit_card import CreditCard
-from snakeeyes.blueprints.billing.models.invoice import Invoice
-from snakeeyes.blueprints.user.models import User
+from neurone.blueprints.billing.models.coupon import Coupon
+from neurone.blueprints.billing.models.credit_card import CreditCard
+from neurone.blueprints.billing.models.invoice import Invoice
+from neurone.blueprints.user.models import User
 
 
 class TestMoney(object):
@@ -77,7 +77,7 @@ class TestCreditCard(object):
 class TestCoupon(object):
     def test_random_coupon_code(self):
         """Random coupon code is created."""
-        from snakeeyes.blueprints.billing.tasks import expire_old_coupons
+        from neurone.blueprints.billing.tasks import expire_old_coupons
 
         expire_old_coupons.delay()
 
@@ -167,7 +167,7 @@ class TestInvoice(object):
                                     "nickname": "Gold",
                                     "product": "prod_000",
                                     "metadata": {},
-                                    "statement_descriptor": "SNAKEEYES GOLD",
+                                    "statement_descriptor": "neurone GOLD",
                                 },
                                 "description": None,
                                 "discountable": True,
@@ -213,7 +213,7 @@ class TestInvoice(object):
         assert parsed_payload["payment_id"] == "cus_000"
         assert parsed_payload["plan"] == "Gold"
         assert parsed_payload["receipt_number"] == "0009000"
-        assert parsed_payload["description"] == "SNAKEEYES GOLD"
+        assert parsed_payload["description"] == "neurone GOLD"
         assert parsed_payload["period_start_on"] == datetime.date(2015, 6, 1)
         assert parsed_payload["period_end_on"] == datetime.date(2015, 6, 15)
         assert parsed_payload["currency"] == "usd"
@@ -227,23 +227,23 @@ class TestInvoice(object):
         next_bill_on = datetime.datetime(2015, 5, 30, 20, 46, 10)
 
         assert parsed_payload["plan"] == "Gold"
-        assert parsed_payload["description"] == "SNAKEEYES GOLD"
+        assert parsed_payload["description"] == "neurone GOLD"
         assert parsed_payload["next_bill_on"] == next_bill_on
         assert parsed_payload["amount_due"] == 500
         assert parsed_payload["interval"] == "month"
 
     def test_invoice_create(self, users, mock_stripe):
         """Successfully create an invoice item."""
-        user = User.find_by_identity("admin@local.host")
+        user = User.find_by_identity("marco.colonna@zoho.eu")
 
         invoice = Invoice()
         invoice.create(
             user=user,
             currency="usd",
             amount="900",
-            coins=1000,
+            credits=1000,
             coupon=None,
             token="cus_000",
         )
 
-        assert user.coins == 1100
+        assert user.credits == 1100

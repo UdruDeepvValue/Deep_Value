@@ -1,5 +1,5 @@
-from snakeeyes.blueprints.contact.tasks import deliver_contact_email
-from snakeeyes.extensions import mail
+from neurone.blueprints.contact.tasks import deliver_contact_email
+from neurone.extensions import mail
 
 
 class TestTasks(object):
@@ -7,7 +7,7 @@ class TestTasks(object):
         """Deliver a contact email."""
         form = {
             "email": "foo@bar.com",
-            "message": "Test message from Snake Eyes.",
+            "message": "Test message from Deep Value.",
         }
 
         with mail.record_messages() as outbox:

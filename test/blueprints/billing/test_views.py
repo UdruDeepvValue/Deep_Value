@@ -210,18 +210,18 @@ class TestBilling(ViewTestMixin):
             200, response, "Billing details and history"
         )
 
-    def test_purchase_coins(self, users, mock_stripe):
-        """Purchase coins requires JavaScript."""
+    def test_purchase_credits(self, users, mock_stripe):
+        """Purchase credits requires JavaScript."""
         self.login()
 
         params = {
             "stripe_key": "cus_000",
-            "coin_bundles": "100",
+            "credit_bundles": "10",
             "name": "Foobar Johnson",
         }
 
         response = self.client.post(
-            url_for("billing.purchase_coins"),
+            url_for("billing.purchase_credits"),
             data=params,
             follow_redirects=True,
         )

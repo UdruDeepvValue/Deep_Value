@@ -1,6 +1,6 @@
 from flask import current_app
 
-from snakeeyes.blueprints.user.models import User
+from neurone.blueprints.user.models import User
 
 initial_user = {
     "role": "admin",

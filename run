@@ -73,7 +73,7 @@ function test {
 
 function test:coverage {
   # Get test coverage
-  cmd pytest --cov snakeeyes/ --cov lib/ --cov-report term-missing "${@}"
+  cmd pytest --cov neurone/ --cov lib/ --cov-report term-missing "${@}"
 }
 
 function shell {

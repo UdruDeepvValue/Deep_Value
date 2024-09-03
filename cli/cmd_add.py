@@ -6,11 +6,11 @@ from faker import Faker
 from flask import current_app
 from flask.cli import with_appcontext
 
-from snakeeyes.blueprints.bet.models.bet import Bet
-from snakeeyes.blueprints.bet.models.dice import roll
-from snakeeyes.blueprints.billing.models.invoice import Invoice
-from snakeeyes.blueprints.user.models import User
-from snakeeyes.extensions import db
+# from neurone.blueprints.search.models.search import Bet
+# from neurone.blueprints.search.models.dice import roll
+from neurone.blueprints.billing.models.invoice import Invoice
+from neurone.blueprints.user.models import User
+from neurone.extensions import db
 
 fake = Faker()
 
@@ -131,7 +131,7 @@ def users():
             "username": username,
             "password": User.encrypt_password("password"),
             "sign_in_count": random.random() * 100,
-            "coins": 100,
+            "credits": 100,
             "last_bet_on": last_bet_on,
             "current_sign_in_on": current_sign_in_on,
             "current_sign_in_ip": fake.ipv4(),

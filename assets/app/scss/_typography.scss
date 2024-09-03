@@ -9,7 +9,7 @@ h5, h6 {
 h1 {
   padding-bottom: 10px;
   margin-bottom: 30px;
-  border-bottom: 1px solid $gray-300;
+  border-bottom: 1px solid $primary;
 }
 
 .no-underline {
@@ -18,4 +18,36 @@ h1 {
 
 .alert.small {
   padding: 6px;
+}
+
+.Text-motto1{
+    white-space: pre-wrap;
+    overflow: visible;
+    font-size: 40px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 1;
+    align-self: center;
+    min-width: 100%;
+    order: 1;
+    z-index: 2;
+    text-shadow: 1px 0 #111, -1px 0 #111, 0 1px #111, 0 -1px #111, 1px 1px #111, -1px -1px #111, 1px -1px #111, -1px 1px #111;
+}
+
+.Text-motto2{
+    overflow: visible;
+    font-size: 50px;
+    font-weight: 700;
+    color: #fe701a;
+    text-align: center;
+    opacity: 1;
+    align-self: center;
+    min-width: 0px;
+    max-width: 100%;
+    order: 2;
+    min-height: 0px;
+    z-index: 3;
+    text-shadow: 1px 0 #fff, -1px 0 #fff, 0 1px #fff, 0 -1px #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
 }

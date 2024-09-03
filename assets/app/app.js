@@ -5,7 +5,7 @@ import BulkDelete from 'modules/bulkDelete';
 import CreateCoupon from 'modules/createCoupon';
 import CheckCoupon from 'modules/checkCoupon';
 import Payment from 'modules/payment';
-import Bet from 'modules/bet';
+// import Bet from 'modules/bet';
 
 $(document).ready(function() {
   let csrfToken = $('meta[name=csrf-token]').attr('content');

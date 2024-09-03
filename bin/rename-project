@@ -6,8 +6,8 @@ set -o pipefail
 APP_NAME="${1}"
 MODULE_NAME="${2}"
 
-FIND_APP_NAME="snakeeyes"
-FIND_MODULE_NAME="SnakeEyes"
+FIND_APP_NAME="neurone"
+FIND_MODULE_NAME="neurone"
 
 if [ -z "${APP_NAME}" ] || [ -z "${MODULE_NAME}" ]; then
     echo "You must supply both an app and module name, example: ${0} myapp MyApp"

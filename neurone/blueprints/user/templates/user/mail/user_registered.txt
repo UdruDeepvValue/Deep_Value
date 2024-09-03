@@ -1,0 +1,12 @@
+Hi Neurone Admin,
+
+A new User is now Active:
+
+name: {{ user.name }}
+surname: {{ user.surname }}
+Company: {{ user.company }}
+Email: {{ user.email }}
+
+
+Thanks,
+Deep Value

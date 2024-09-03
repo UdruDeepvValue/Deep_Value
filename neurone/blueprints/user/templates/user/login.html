@@ -1,0 +1,27 @@
+{% extends 'layouts/app.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}Sign in to access your account{% endblock %}
+
+{% block body %}
+  <div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5 d-flex justify-content-center">
+      <div class="col col-md-12 text-center">
+        <div class="Logo-container">
+        <a class="Clickable-Logo" href="/">
+			  <img src="{{ static_url_for('static', filename='images/Logo.png') }}" height="120" class="d-inline-block align-top" alt=""/></a>
+        </div>
+      </div>
+      <div class="col col-md-6 col-offset-3">
+        {{wtf.quick_form(form) }}
+      </div>
+      <div class="col col-md-12 text-center">
+        <a href="{{ url_for('user.begin_password_reset') }}">
+            forgot your password?
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

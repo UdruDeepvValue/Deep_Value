@@ -1,9 +1,21 @@
 // Override any Bootstrap variables here:
 //   https://github.com/twbs/bootstrap/blob/v4.4.1/scss/_variables.scss
-$primary: #941212 !default;
-$warning: #b48636 !default;
+$primary: #fe701a !default;
+$secondary: #1aa8fe !default;
+$success: #00ff2b !default;
+$warning: #fff400 !default;
+$danger: #ff2d20 !default;
+$info: #00ffec !default;
+$dark: #111111 !default;
+$muted: #fe904d !default;
 
-$input-color: #212529 !default;
+$body-color: #fff !default;
+$body-bg: #111 !default;
+
+$list-group-bg: $dark !default;
+$list-group-border-color: $primary !default;
+
+// $input-color: #212529 !default;
 
 $input-btn-focus-width: 1px;
 $input-btn-focus-box-shadow: 0;

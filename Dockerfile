@@ -1,5 +1,5 @@
 FROM node:16.20.1-bookworm-slim AS assets
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
+LABEL maintainer="Marco Colonna <marco@deep-value.cloud>"
 
 WORKDIR /app/assets
 
@@ -33,8 +33,9 @@ CMD ["bash"]
 
 ###############################################################################
 
-FROM python:3.12.1-slim-bookworm AS app
-LABEL maintainer="Nick Janetakis <nick.janetakis@gmail.com>"
+#FROM python:3.12.1-slim-bookworm AS app
+FROM --platform=linux/x86_64 python:3.9 AS app
+LABEL maintainer="Marco Colonna <marco@deep-value.cloud>"
 
 WORKDIR /app
 
@@ -51,6 +52,8 @@ RUN apt-get update \
 
 USER python
 
+RUN python -m pip install --upgrade pip
+
 COPY --chown=python:python requirements*.txt ./
 COPY --chown=python:python bin/ ./bin
 
@@ -58,7 +61,7 @@ RUN chmod 0755 bin/* && bin/pip3-install
 
 ARG FLASK_DEBUG="false"
 ENV FLASK_DEBUG="${FLASK_DEBUG}" \
-    FLASK_APP="snakeeyes.app" \
+    FLASK_APP="neurone.app" \
     FLASK_SKIP_DOTENV="true" \
     PYTHONUNBUFFERED="true" \
     PYTHONPATH="." \
@@ -75,4 +78,4 @@ ENTRYPOINT ["/app/bin/docker-entrypoint-web"]
 
 EXPOSE 8000
 
-CMD ["gunicorn", "-c", "python:config.gunicorn", "snakeeyes.app:create_app()"]
+CMD ["gunicorn", "-c", "python:config.gunicorn", "neurone.app:create_app()"]

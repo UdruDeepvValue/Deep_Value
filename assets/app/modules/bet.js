@@ -21,7 +21,7 @@ export default class Bet {
     this.guess = $('#guess');
     this.wagered = $('#wagered');
     this.dice = $('#dice');
-    this.userCoins = $('#user_coins');
+    this.usercredits = $('#user_credits');
     this.outcomeStatus = $('#outcome');
     this.spinner = $('.spinner');
     this.recentBetsSelector = '#recent_bets';
@@ -58,14 +58,14 @@ export default class Bet {
     };
 
     return $.ajax(ajaxParams).done(function (data, status, xhr) {
-      let coinsLeft = parseInt(_this.userCoins.text());
+      let creditsLeft = parseInt(_this.usercredits.text());
       let parsedData = xhr.responseJSON.data;
       let statusHTML = '';
       let betClass = '';
       let alertClass = '';
       let diceEntities = '';
 
-      _this.userCoins.text(coinsLeft + parsedData.net);
+      _this.usercredits.text(creditsLeft + parsedData.net);
 
       if (parsedData.is_winner) {
         statusHTML = '<i class="far fa-fw fa-smile"></i> Congrats, you won!';
@@ -107,7 +107,7 @@ export default class Bet {
         .html(statusHTML);
     }).fail(function (xhr, status, error) {
       let statusClass = 'alert-danger';
-      let errorMessage = 'You are out of coins. You should buy more.';
+      let errorMessage = 'You are out of credits. You should buy more.';
 
       if (xhr.responseJSON) {
         errorMessage = xhr.responseJSON.error;

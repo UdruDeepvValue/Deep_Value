@@ -9,34 +9,34 @@ from flask import g
 from config import settings
 from lib.security import sign_token
 from lib.util_datetime import timedelta_months
-from snakeeyes.app import create_app
-from snakeeyes.blueprints.billing.gateways.stripecom import Card as PaymentCard
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.app import create_app
+from neurone.blueprints.billing.gateways.stripecom import Card as PaymentCard
+from neurone.blueprints.billing.gateways.stripecom import (
     Charge as PaymentCharge,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Coupon as PaymentCoupon,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Customer as PaymentCustomer,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Event as PaymentEvent,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Invoice as PaymentInvoice,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Product as PaymentProduct,
 )
-from snakeeyes.blueprints.billing.gateways.stripecom import (
+from neurone.blueprints.billing.gateways.stripecom import (
     Subscription as PaymentSubscription,
 )
-from snakeeyes.blueprints.billing.models.coupon import Coupon
-from snakeeyes.blueprints.billing.models.credit_card import CreditCard
-from snakeeyes.blueprints.billing.models.subscription import Subscription
-from snakeeyes.blueprints.user.models import User
-from snakeeyes.extensions import db as _db
+from neurone.blueprints.billing.models.coupon import Coupon
+from neurone.blueprints.billing.models.credit_card import CreditCard
+from neurone.blueprints.billing.models.subscription import Subscription
+from neurone.blueprints.user.models import User
+from neurone.extensions import db as _db
 
 
 @pytest.fixture(scope="session")
@@ -104,7 +104,7 @@ def db(app):
         "role": "admin",
         "email": "admin@local.host",
         "password": "password",
-        "coins": 100,
+        "credits": 100,
     }
 
     admin = User(**params)
@@ -463,7 +463,7 @@ def mock_stripe():
             "tokenization_method": None,
         },
         "source_transfer": None,
-        "statement_descriptor": "SNAKEEYES COINS",
+        "statement_descriptor": "neurone creditS",
         "status": "succeeded",
     }
     PaymentCharge.create = Mock(return_value=charge_create_api)

@@ -1,0 +1,27 @@
+{% extends 'layouts/app.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}Confirm Email{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row" style="height: 100px;"></div>
+    <div class="row pb-5 mt-5">
+      <div class="col-md-12 card bg-dark">
+        <h2 class="text-center" style="text-color:#ffffff">Confirm Email</h2>
+        <div class="Logo-container">
+            <a class="Clickable-Logo" href="/">
+                  <img src="{{ static_url_for('static', filename='images/Logo.png') }}" height="120" class="d-inline-block align-top" alt=""/></a>
+        </div>
+        <div class="main-form" style="text-align: center;">
+            <div class="col-md-8 col-offset-2">
+                {{wtf.quick_form(form)}}
+                <div class="visible-xs visible-sm sm-margin-top"></div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

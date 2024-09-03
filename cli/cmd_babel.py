@@ -4,7 +4,7 @@ import subprocess
 import click
 from flask.cli import with_appcontext
 
-APP_NAME = "snakeeyes"
+APP_NAME = "neurone"
 BABEL_I18N_PATH = os.path.join(APP_NAME, "translations")
 MESSAGES_PATH = os.path.join(APP_NAME, "translations", "messages.pot")
 

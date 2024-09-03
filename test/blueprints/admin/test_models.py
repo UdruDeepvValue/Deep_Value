@@ -1,4 +1,4 @@
-from snakeeyes.blueprints.billing.models.coupon import Coupon
+from neurone.blueprints.billing.models.coupon import Coupon
 
 
 class TestCoupon(object):

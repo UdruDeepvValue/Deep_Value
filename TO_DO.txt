@@ -1,0 +1,9 @@
+sistemare:
+DB acquisti (sia per bundle che abbonamenti):
+ - Creato  DB
+ - Creare funzione per inserire linee in caso di acquisto e salvare in DB
+tassazione acquisti
+
+FT elettronica --> Fabio SPID!
+
+Templates Errors

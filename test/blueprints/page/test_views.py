@@ -20,6 +20,12 @@ class TestPage(ViewTestMixin):
         response = self.client.get(url_for("page.privacy"))
         assert response.status_code == 200
 
+    def test_cookies_page(self):
+        """Privacy page should respond with a success 200."""
+        response = self.client.get(url_for("page.cookies"))
+        assert response.status_code == 200
+
+
     def test_404_page(self):
         """404 errors should show the custom 404 page."""
         response = self.client.get("/nochancethispagewilleverexistintheapp")

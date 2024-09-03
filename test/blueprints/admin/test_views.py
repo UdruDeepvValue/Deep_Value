@@ -2,7 +2,7 @@ from flask import url_for
 
 from lib.tests import ViewTestMixin
 from lib.tests import assert_status_with_message
-from snakeeyes.blueprints.user.models import User
+from neurone.blueprints.user.models import User
 
 
 class TestDashboard(ViewTestMixin):
@@ -26,11 +26,11 @@ class TestUsers(ViewTestMixin):
         self.login()
         response = self.client.get(url_for("admin.users_edit", id=1))
 
-        assert_status_with_message(200, response, "admin@local.host")
+        assert_status_with_message(200, response, "marco.colonna@zoho.eu")
 
     def test_edit_resource(self):
         """Edit this resource successfully."""
-        params = {"role": "admin", "username": "foo", "active": True}
+        params = {"roles": "admin", "active": True}
 
         self.login()
         response = self.client.post(
