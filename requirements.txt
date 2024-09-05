@@ -45,7 +45,7 @@ numpy==1.26.4
 pandas==2.2.2
 tensorboard==2.15.2
 tensorboard-data-server==0.7.2
-tensorflow==2.16.0
+tensorflow==2.16.1
 tensorflow-estimator==2.15.0
 #tensorflow-intel==2.15.0
 tensorflow-io-gcs-filesystem==0.31.0
