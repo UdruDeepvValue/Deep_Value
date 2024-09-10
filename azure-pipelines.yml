@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '28314bd5-3fba-4b5d-ac0b-88f8a9bfcea7'
   imageRepository: 'udrudeepvvaluedeepvalue'
-  containerRegistry: 'deepvalue.azurecr.io'
+  containerRegistry: 'deep-value.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
