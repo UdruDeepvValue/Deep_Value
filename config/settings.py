@@ -6,7 +6,7 @@ from celery.schedules import crontab
 
 LOG_LEVEL = os.getenv("LOG_LEVEL", "DEBUG")
 
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = os.getenv("SECRET_KEY", "KSAFJOADJFLajsofjsjfaoij0392982323riejfwoiujr89wWEJFWEIO") #os.environ["SECRET_KEY"]
 DEBUG = bool(strtobool(os.getenv("FLASK_DEBUG", "false")))
 
 SERVER_NAME = os.getenv(
