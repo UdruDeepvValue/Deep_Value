@@ -37,3 +37,14 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Microsoft Azure Sponsorship(1)(5db52515-2fb5-434a-af0e-4eb5efd3c35c)'
+        appType: 'webAppContainer'
+        WebAppName: 'Deep-Value'
+        deployToSlotOrASE: true
+        ResourceGroupName: 'Neurone'
+        SlotName: 'production'
+        DockerNamespace: 'deep-value'
+        DockerRepository: 'neurone'
