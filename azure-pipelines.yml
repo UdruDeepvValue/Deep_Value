@@ -46,5 +46,5 @@ stages:
         deployToSlotOrASE: true
         ResourceGroupName: 'Neurone'
         SlotName: 'production'
-        DockerNamespace: 'deep-value'
+        DockerNamespace: 'deep-value.azurewebsites.net'
         DockerRepository: 'neurone'
