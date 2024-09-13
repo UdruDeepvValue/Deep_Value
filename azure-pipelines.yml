@@ -43,8 +43,8 @@ stages:
         azureSubscription: 'Microsoft Azure Sponsorship(1)(5db52515-2fb5-434a-af0e-4eb5efd3c35c)'
         appType: 'webAppContainer'
         WebAppName: 'Deep-Value'
-        deployToSlotOrASE: true
+        deployToSlotOrASE: false
         ResourceGroupName: 'Neurone'
         SlotName: 'production'
-        DockerNamespace: 'deep-value.azurewebsites.net'
-        DockerRepository: 'neurone'
+        DockerNamespace: 'deep-value.azurecr.io'
+        DockerRepository: 'udrudeepvvaluedeepvalue'
