@@ -120,33 +120,10 @@ def neurone():
         email = current_user.email
         ebitdaperc = ebitda/rev0
         growth = ((hcagr+fcagr)/200)+1
-        if rev0 < 30000:
-            small = 0
-            medium = 0
-            big = 0.95
-        elif rev0 >= 50000:
-            small = 0
-            medium = 0
-            big = 1
-        else:
-            small = 0
-            medium = 0
-            big = 0.98
-        arr = ann/100
-        market = 16.04
-        sandp = -0.1944
-        cashebitda = fcff/ebitda
-        rule40 = ebitdaperc + ((rev0/rev1)-1)
-        if rule40 >= 0.5:
-            itssw = 1
-        else:
-            itssw = 0
-        itslisted = listed
-        countryrank = Countries.query.filter_by(country=country).first().rank
-        ind = Industries.query.filter_by(industry=industry).first().multiple
-        uid = str(uuid.uuid1())
-        adj1 = math.log10(math.exp(arr))
-        adj2 = math.log10(ind)
+        ###
+        # Missing code
+        ###
+       
 
         data = Ne(rev0=rev0, ebitda=ebitda, fcff=fcff, rev1=rev1,
                   hcagr=hcagr, fcagr=fcagr, arr=ann, country=country,
@@ -166,10 +143,10 @@ def neurone():
         model = load_model(model_path)
         result = model.predict(dvi)
 
-        if ind >= result[0, 2]:
-            result = result+adj1+adj2
-        else:
-            result = result+adj1-adj2
+        
+        ####
+        #Missing code
+        ####
 
         lm = float(result[0, 0])
         mm = float(result[0, 1])
